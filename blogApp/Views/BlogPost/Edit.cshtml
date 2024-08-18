@@ -1,0 +1,30 @@
+﻿@model blogApp.Models.Blog
+   
+
+@{
+    ViewData["Title"] = "Edit Blog Post";
+}
+
+
+<div class="form-container sign-in-container" style="margin-left: 25%; padding: 70px 0">
+    <h1>Edit Blog Post</h1>
+
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="id" />
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" class="control-label"></label>
+            <textarea asp-for="Content" class="form-control" style="width: 240px; height: 50px"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
+

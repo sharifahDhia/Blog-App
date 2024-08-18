@@ -1,0 +1,67 @@
+﻿@model IEnumerable<blogApp.Models.Blog>
+
+@{
+    ViewData["Title"] = "Blog Page";
+}
+
+<header>
+    <nav>
+        
+        <a href="/Account/RegisterLogin">Home</a>
+       
+    </nav>
+</header>
+
+<h1>Blog Posts</h1>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No blog posts available. <a href="@Url.Action("Create", "BlogPost")" class="btn btn-primary">Create New</a></p>
+}
+else
+{
+    <p>
+        <a href="@Url.Action("Create", "BlogPost")" class="btn btn-primary">Create New</a>
+    </p>
+    <div class="blog_post_container">  
+    @foreach( var item in Model)
+    {
+      <div class="blog_post">
+        <div class="img_pod">
+            <img src="https://pbs.twimg.com/profile_images/890901007387025408/oztASP4n.jpg" alt="random image">
+        </div>
+        <div class="container_copy">
+
+                <h3>@Html.DisplayFor(modelItem => item.CreatedAt)</h3>
+                <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
+                <p>@Html.DisplayFor(modelItem => item.Content)</p>
+
+               
+                <a href="@Url.Action("Edit", "BlogPost", new { id = item.id })" class="btn btn-primary">Edit</a>
+                <a href="@Url.Action("Delete", "BlogPost", new { id = item.id })" class="btn btn-primary">Delete</a>
+        </div>
+
+      </div>
+    }
+        <div class="pagination">
+            <a href="#" id="prev">&laquo;</a>
+            <a href="#" class="page-num active" data-page="1">1</a>
+            <a href="#" class="page-num" data-page="2">2</a>
+            <a href="#" class="page-num" data-page="3">3</a>
+            <a href="#" class="page-num" data-page="4">4</a>
+            <a href="#" class="page-num" data-page="5">5</a>
+            <a href="#" id="next">&raquo;</a>
+        </div>
+
+    </div>
+
+    
+
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Index.css" />
+}
+@section Scripts{
+    <script src="~/js/pagination.js"></script>
+}
